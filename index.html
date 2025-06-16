@@ -19,7 +19,11 @@
       margin: 0;
       padding: 0;
       background-color: #f0f0f0;
-      transition: background-color 0.3s ease;
+      transition: background-color 0.3s ease, background-image 0.3s ease;
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
     }
 
     /* Contenedor principal */
@@ -29,6 +33,11 @@
       min-height: 100vh;
       position: relative;
       overflow-x: hidden;
+      background-color: rgba(255, 255, 255, 0.85);
+    }
+
+    body.dark-theme .app-container {
+      background-color: rgba(0, 0, 0, 0.85);
     }
 
     /* Estilos para temas */
@@ -140,88 +149,51 @@
       border: 1px solid #ddd;
     }
 
-    .vendedores-section {
-      margin-top: 20px;
-    }
-
-    .add-vendedor {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 15px;
-    }
-
-    .add-vendedor input {
-      padding: 8px;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
-
-    #add-vendedor-btn {
-      background-color: #FF6B35;
-      color: white;
-      border: none;
-      padding: 8px;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    #vendedores-list {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    #vendedores-list li {
-      padding: 10px;
-      background-color: #f5f5f5;
-      margin-bottom: 5px;
-      border-radius: 5px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    #vendedores-list li button {
-      background-color: #ff4444;
-      color: white;
-      border: none;
-      border-radius: 3px;
-      padding: 2px 5px;
-      cursor: pointer;
-      font-size: 12px;
-      width: 20px;
-      height: 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Barra de estadísticas */
+    /* Barra de estadísticas mejorada */
     .stats-bar {
       display: flex;
       justify-content: space-around;
       padding: 15px;
-      background: white;
+      background: rgba(255, 255, 255, 0.9);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
       z-index: 10;
+      backdrop-filter: blur(5px);
     }
 
     .stat-card {
       text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+      min-width: 90px;
     }
 
     .stat-card i {
-      font-size: 24px;
+      font-size: 28px;
       color: #FF6B35;
+      margin-bottom: 5px;
     }
 
     .stat-card span {
       display: block;
-      font-size: 20px;
+      font-size: 32px;
       font-weight: bold;
+      color: #333;
+    }
+
+    .stat-card p {
+      font-size: 14px;
+      color: #666;
+      margin-top: 5px;
+    }
+
+    body.dark-theme .stat-card span {
+      color: #eee;
+    }
+
+    body.dark-theme .stat-card p {
+      color: #ccc;
     }
 
     /* Lista de pedidos */
@@ -281,6 +253,7 @@
       align-items: center;
       justify-content: center;
       gap: 5px;
+      min-width: 120px;
     }
 
     .btn-en-camino {
@@ -293,29 +266,40 @@
       color: white;
     }
 
+    .btn-no-entregado {
+      background: #ff4444;
+      color: white;
+    }
+
     .btn-archivar {
       background: #6c757d !important;
       color: white !important;
     }
 
-    /* Botón flotante */
+    /* Botón flotante mejorado */
     .floating-btn {
       position: fixed;
       bottom: 30px;
       right: 30px;
-      width: 60px;
-      height: 60px;
+      width: 70px;
+      height: 70px;
       border-radius: 50%;
       background: #FF6B35;
       color: white;
       border: none;
-      font-size: 24px;
+      font-size: 30px;
       cursor: pointer;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
       z-index: 20;
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .floating-btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
 
     /* Modal */
@@ -429,14 +413,199 @@
       border-left: 4px solid #198754;
     }
 
-    /* Search input */
+    .estado-no_entregado {
+      background-color: #F8D7DA;
+      color: #721C24;
+      border-left: 4px solid #DC3545;
+    }
+
+    /* Search input mejorado */
     .search-input {
       width: 90%;
-      padding: 10px;
+      padding: 12px 20px;
       margin: 15px auto;
       display: block;
       border: 1px solid #ddd;
-      border-radius: 20px;
+      border-radius: 25px;
+      font-size: 16px;
+      background-color: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+      outline: none;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      border-color: #FF6B35;
+    }
+
+    /* Configuración de fondo */
+    .background-settings {
+      margin-top: 20px;
+      padding: 15px;
+      background-color: #f5f5f5;
+      border-radius: 8px;
+    }
+
+    .background-settings h4 {
+      margin-bottom: 10px;
+    }
+
+    .background-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .background-option {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .background-option input[type="file"] {
+      display: none;
+    }
+
+    .background-option label {
+      padding: 8px 12px;
+      background-color: #FF6B35;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+      display: inline-block;
+    }
+
+    .background-option button {
+      padding: 8px 12px;
+      background-color: #6c757d;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    /* Cliente frecuente */
+    .cliente-frecuente {
+      background-color: #d4edda;
+      padding: 10px;
+      border-radius: 5px;
+      margin: 10px 0;
+      display: none;
+    }
+
+    .cliente-frecuente p {
+      margin: 5px 0;
+    }
+
+    .cliente-frecuente button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 3px;
+      cursor: pointer;
+      margin-top: 5px;
+    }
+
+    /* Virtualización de listas */
+    .virtual-list-container {
+      height: 60vh;
+      overflow-y: auto;
+      position: relative;
+    }
+
+    .virtual-list {
+      position: relative;
+      height: 100%;
+    }
+
+    .virtual-list-item {
+      position: absolute;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    /* Loading spinner */
+    .loading-spinner {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .spinner {
+      border: 4px solid rgba(0, 0, 0, 0.1);
+      border-radius: 50%;
+      border-top: 4px solid #FF6B35;
+      width: 30px;
+      height: 30px;
+      animation: spin 1s linear infinite;
+      margin: 0 auto;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Vendedores section */
+    .vendedores-section {
+      margin-top: 20px;
+    }
+
+    .add-vendedor {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    .add-vendedor input {
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+    }
+
+    #add-vendedor-btn {
+      background-color: #FF6B35;
+      color: white;
+      border: none;
+      padding: 8px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    #vendedores-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    #vendedores-list li {
+      padding: 10px;
+      background-color: #f5f5f5;
+      margin-bottom: 5px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #vendedores-list li button {
+      background-color: #ff4444;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      padding: 2px 5px;
+      cursor: pointer;
+      font-size: 12px;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Submenu de historial */
@@ -477,6 +646,42 @@
     .historial-actions button {
       width: 48%;
     }
+
+    /* Modal de confirmación de entrega */
+    .confirmacion-entrega {
+      text-align: center;
+      padding: 20px;
+    }
+
+    .confirmacion-entrega h3 {
+      margin-bottom: 20px;
+    }
+
+    .confirmacion-botones {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .confirmacion-botones button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      min-width: 120px;
+    }
+
+    .btn-confirmar-entrega {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    .btn-negar-entrega {
+      background-color: #f44336;
+      color: white;
+    }
   </style>
 </head>
 <body>
@@ -514,11 +719,24 @@
           </select>
         </div>
         
+        <div class="background-settings">
+          <h4>Fondo de Pantalla</h4>
+          <div class="background-options">
+            <div class="background-option">
+              <input type="file" id="background-upload" accept="image/*">
+              <label for="background-upload"><i class="fas fa-upload"></i> Personalizar</label>
+            </div>
+            <div class="background-option">
+              <button id="reset-background"><i class="fas fa-trash"></i> Restablecer</button>
+            </div>
+          </div>
+        </div>
+        
         <div class="vendedores-section">
           <h4>Vendedores</h4>
           <div class="add-vendedor">
-            <input type="text" id="vendedor-nombre" placeholder="Nombre">
-            <input type="tel" id="vendedor-telefono" placeholder="Teléfono (8 dígitos)" pattern="[0-9]{8}">
+            <input type="text" id="vendedor-nombre-input" placeholder="Nombre">
+            <input type="tel" id="vendedor-telefono-input" placeholder="Teléfono (8 dígitos)" pattern="[0-9]{8}">
             <button id="add-vendedor-btn">Agregar</button>
           </div>
           <ul id="vendedores-list"></ul>
@@ -530,26 +748,26 @@
       </div>
     </div>
 
-    <!-- Barra de Estadísticas -->
+    <!-- Barra de Estadísticas Mejorada -->
     <div class="stats-bar">
       <div class="stat-card">
-        <i class="fas fa-box"></i>
+        <i class="fas fa-box-open"></i>
         <span id="total-pedidos">0</span>
         <p>Total</p>
       </div>
       <div class="stat-card">
-        <i class="fas fa-spinner"></i>
+        <i class="fas fa-truck-loading"></i>
         <span id="pendientes">0</span>
         <p>Pendientes</p>
       </div>
       <div class="stat-card">
-        <i class="fas fa-check-circle"></i>
+        <i class="fas fa-check-double"></i>
         <span id="entregados">0</span>
         <p>Entregados</p>
       </div>
     </div>
 
-    <!-- Search input -->
+    <!-- Search input mejorado -->
     <input type="text" id="buscar-pedido" placeholder="Buscar pedidos..." class="search-input">
 
     <!-- Lista de Pedidos -->
@@ -557,23 +775,38 @@
       <!-- Tarjetas generadas dinámicamente -->
     </div>
 
-    <!-- Botón Flotante -->
+    <!-- Loading spinner -->
+    <div class="loading-spinner" id="loading-spinner">
+      <div class="spinner"></div>
+      <p>Cargando...</p>
+    </div>
+
+    <!-- Botón Flotante Mejorado -->
     <button class="floating-btn" id="add-pedido-btn">
       <i class="fas fa-plus"></i>
     </button>
 
-    <!-- Modal de Registro -->
+    <!-- Modal de Registro con detección de cliente frecuente - FORMULARIO CORREGIDO -->
     <div class="modal" id="registro-modal">
       <div class="modal-content">
         <h2>Nuevo Pedido</h2>
         <form id="pedido-form">
-          <input type="text" placeholder="Nombre del Cliente" required>
-          <input type="text" placeholder="Dirección" required>
-          <input type="tel" placeholder="Teléfono del Cliente (8 dígitos)" pattern="[0-9]{8}" title="8 dígitos sin código" required>
-          <textarea placeholder="Productos a enviar" required></textarea>
-          <input list="vendedores-data" name="vendedor" placeholder="Nombre del Vendedor" required>
+          <input type="text" id="cliente-nombre" placeholder="Nombre del Cliente" required>
+          <input type="text" id="cliente-direccion" placeholder="Dirección" required>
+          <input type="tel" id="cliente-telefono" placeholder="Teléfono del Cliente (8 dígitos)" 
+                 pattern="[0-9]{8}" title="Por favor ingrese 8 dígitos sin espacios ni guiones" required>
+          
+          <div class="cliente-frecuente" id="cliente-frecuente">
+            <p>Cliente frecuente encontrado:</p>
+            <p id="cliente-info"></p>
+            <button type="button" id="usar-cliente-btn">Usar esta información</button>
+          </div>
+          
+          <textarea id="cliente-productos" placeholder="Productos a enviar" required></textarea>
+          <input list="vendedores-data" name="vendedor" id="vendedor-nombre" placeholder="Nombre del Vendedor" required>
           <datalist id="vendedores-data"></datalist>
-          <input type="tel" placeholder="Teléfono del Vendedor (8 dígitos)" pattern="[0-9]{8}" title="8 dígitos sin código" required>
+          <input type="tel" id="vendedor-telefono" placeholder="Teléfono del Vendedor (8 dígitos)" 
+                 pattern="[0-9]{8}" title="Por favor ingrese 8 dígitos sin espacios ni guiones" required>
           <div class="modal-actions">
             <button type="submit">Guardar</button>
           </div>
@@ -581,7 +814,7 @@
       </div>
     </div>
 
-    <!-- Modal de Historial -->
+    <!-- Modal de Historial con virtualización -->
     <div class="modal" id="historial-modal">
       <div class="modal-content">
         <span class="close-btn" id="close-historial">&times;</span>
@@ -593,18 +826,41 @@
             <button id="show-all-historial">Mostrar todos</button>
           </div>
         </div>
-        <div id="historial-list"></div>
+        <div class="virtual-list-container">
+          <div id="historial-list" class="virtual-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal de Confirmación de Entrega -->
+    <div class="modal" id="confirmacion-entrega-modal">
+      <div class="modal-content">
+        <div class="confirmacion-entrega">
+          <h3>¿El pedido fue entregado?</h3>
+          <p>Confirma el estado de entrega del pedido</p>
+          
+          <div class="confirmacion-botones">
+            <button class="btn-confirmar-entrega" id="confirmar-entrega-btn">
+              <i class="fas fa-check-circle"></i> Entregado
+            </button>
+            <button class="btn-negar-entrega" id="negar-entrega-btn">
+              <i class="fas fa-times-circle"></i> No Entregado
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    // JavaScript completo
     // Datos
     let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
     let historial = JSON.parse(localStorage.getItem('historial')) || [];
     let vendedores = JSON.parse(localStorage.getItem('vendedores')) || [];
     let currentTheme = localStorage.getItem('theme') || 'light';
+    let backgroundImage = localStorage.getItem('backgroundImage') || '';
+    let searchTimeout = null;
+    let currentPedidoId = null; // Para almacenar el ID del pedido durante la confirmación
 
     // Elementos del DOM
     const pedidosList = document.getElementById('pedidos-list');
@@ -624,6 +880,52 @@
     const filterDateBtn = document.getElementById('filter-date-btn');
     const showAllHistorial = document.getElementById('show-all-historial');
     const historialTitle = document.getElementById('historial-title');
+    const clienteTelefonoInput = document.getElementById('cliente-telefono');
+    const clienteNombreInput = document.getElementById('cliente-nombre');
+    const clienteDireccionInput = document.getElementById('cliente-direccion');
+    const clienteProductosInput = document.getElementById('cliente-productos');
+    const clienteFrecuenteDiv = document.getElementById('cliente-frecuente');
+    const clienteInfoDiv = document.getElementById('cliente-info');
+    const usarClienteBtn = document.getElementById('usar-cliente-btn');
+    const backgroundUpload = document.getElementById('background-upload');
+    const resetBackgroundBtn = document.getElementById('reset-background');
+    const loadingSpinner = document.getElementById('loading-spinner');
+    const vendedorNombreInput = document.getElementById('vendedor-nombre');
+    const vendedorTelefonoInput = document.getElementById('vendedor-telefono');
+    const confirmacionEntregaModal = document.getElementById('confirmacion-entrega-modal');
+    const confirmarEntregaBtn = document.getElementById('confirmar-entrega-btn');
+    const negarEntregaBtn = document.getElementById('negar-entrega-btn');
+
+    // Variables para virtualización
+    const ITEM_HEIGHT = 180; // Altura estimada de cada elemento del historial
+    let visibleItems = [];
+    let scrollTop = 0;
+
+    // Configurar fondo de pantalla
+    function setupBackground() {
+      if (backgroundImage) {
+        document.body.style.backgroundImage = `url(${backgroundImage})`;
+      }
+      
+      backgroundUpload.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (file) {
+          const reader = new FileReader();
+          reader.onload = (event) => {
+            backgroundImage = event.target.result;
+            localStorage.setItem('backgroundImage', backgroundImage);
+            document.body.style.backgroundImage = `url(${backgroundImage})`;
+          };
+          reader.readAsDataURL(file);
+        }
+      });
+      
+      resetBackgroundBtn.addEventListener('click', () => {
+        backgroundImage = '';
+        localStorage.removeItem('backgroundImage');
+        document.body.style.backgroundImage = '';
+      });
+    }
 
     // Función para enviar WhatsApp
     function enviarWhatsApp(numero, mensaje) {
@@ -663,6 +965,51 @@
              d1.getDate() === d2.getDate();
     }
 
+    // Buscar cliente frecuente
+    function buscarClienteFrecuente(telefono) {
+      if (!telefono || telefono.length !== 8) {
+        clienteFrecuenteDiv.style.display = 'none';
+        return;
+      }
+      
+      // Buscar en el historial primero
+      const clienteEnHistorial = historial.find(p => p.telefono === telefono);
+      if (clienteEnHistorial) {
+        mostrarInfoCliente(clienteEnHistorial);
+        return;
+      }
+      
+      // Si no está en historial, buscar en pedidos activos
+      const clienteEnPedidos = pedidos.find(p => p.telefono === telefono);
+      if (clienteEnPedidos) {
+        mostrarInfoCliente(clienteEnPedidos);
+      }
+    }
+
+    // Mostrar información de cliente frecuente
+    function mostrarInfoCliente(cliente) {
+      clienteInfoDiv.innerHTML = `
+        <strong>Nombre:</strong> ${cliente.cliente}<br>
+        <strong>Dirección:</strong> ${cliente.direccion}
+      `;
+      clienteFrecuenteDiv.style.display = 'block';
+    }
+
+    // Usar información de cliente frecuente
+    function usarInfoCliente() {
+      const telefono = clienteTelefonoInput.value;
+      let cliente = historial.find(p => p.telefono === telefono);
+      if (!cliente) {
+        cliente = pedidos.find(p => p.telefono === telefono);
+      }
+      
+      if (cliente) {
+        clienteNombreInput.value = cliente.cliente;
+        clienteDireccionInput.value = cliente.direccion;
+        clienteFrecuenteDiv.style.display = 'none';
+      }
+    }
+
     // Renderizar lista de pedidos
     function renderizarPedidos(lista = pedidos) {
       pedidosList.innerHTML = '';
@@ -675,7 +1022,7 @@
       
       // Ordenar pedidos: pendientes primero, luego en camino, luego entregados
       const pedidosOrdenados = [...lista].sort((a, b) => {
-        const ordenEstados = { 'pendiente': 1, 'en_camino': 2, 'entregado': 3 };
+        const ordenEstados = { 'pendiente': 1, 'en_camino': 2, 'entregado': 3, 'no_entregado': 4 };
         return ordenEstados[a.estado] - ordenEstados[b.estado];
       });
 
@@ -694,6 +1041,10 @@
             estadoTexto = 'Entregado';
             estadoClase = 'estado-entregado';
             break;
+          case 'no_entregado':
+            estadoTexto = 'No entregado';
+            estadoClase = 'estado-no_entregado';
+            break;
           default:
             estadoTexto = 'Pendiente';
             estadoClase = 'estado-pendiente';
@@ -702,9 +1053,9 @@
         pedidoCard.innerHTML = `
           <h3>${pedido.cliente}</h3>
           <p>${pedido.direccion}</p>
-          <p>${pedido.productos}</p>
           <p>Tel: +503${pedido.telefono}</p>
-          <p>Vendedor: ${pedido.vendedor} (+503${pedido.telefonoVendedor})</p>
+          <p>Productos: ${pedido.productos}</p>
+          <p>Vendedor: ${pedido.vendedor} (Tel: +503${pedido.telefonoVendedor})</p>
           <p>Estado: <span class="estado-pedido ${estadoClase}">${estadoTexto}</span></p>
           <p><small>Creado: ${formatearFecha(pedido.fechaCreacion)}</small></p>
           <div class="botones-accion">
@@ -716,7 +1067,7 @@
                 <i class="fas fa-truck"></i> En camino
               </button>`
             }
-            <button class="btn-entregado" onclick="cambiarEstado(${pedido.id}, 'entregado')">
+            <button class="btn-entregado" onclick="mostrarConfirmacionEntrega(${pedido.id})">
               <i class="fas fa-check-circle"></i> ${pedido.estado === 'entregado' ? 'Entregado' : 'Entregar'}
             </button>
           </div>
@@ -727,28 +1078,101 @@
       guardarDatos();
     }
 
-    // Renderizar historial
-    function renderizarHistorial(lista = historial) {
-      historialList.innerHTML = '';
-      if (lista.length === 0) {
-        historialList.innerHTML = '<p>No hay pedidos archivados aún.</p>';
-        return;
-      }
+    // Mostrar modal de confirmación de entrega
+    window.mostrarConfirmacionEntrega = (id) => {
+      currentPedidoId = id;
+      confirmacionEntregaModal.style.display = 'flex';
+    };
 
-      lista.forEach(pedido => {
-        const card = document.createElement('div');
-        card.className = 'pedido-card';
-        card.innerHTML = `
-          <h3>${pedido.cliente}</h3>
-          <p><small>Archivado el: ${formatearFecha(pedido.fechaArchivado)}</small></p>
-          <p>${pedido.direccion}</p>
-          <p>Productos: ${pedido.productos}</p>
-          <p>Tel: +503${pedido.telefono}</p>
-          <p>Vendedor: ${pedido.vendedor} (+503${pedido.telefonoVendedor})</p>
-          <p><small>Creado: ${formatearFecha(pedido.fechaCreacion)}</small></p>
-        `;
-        historialList.appendChild(card);
+    // Configurar botones de confirmación de entrega
+    function setupConfirmacionEntrega() {
+      confirmarEntregaBtn.addEventListener('click', () => {
+        cambiarEstado(currentPedidoId, 'entregado');
+        confirmacionEntregaModal.style.display = 'none';
       });
+
+      negarEntregaBtn.addEventListener('click', () => {
+        cambiarEstado(currentPedidoId, 'no_entregado');
+        confirmacionEntregaModal.style.display = 'none';
+      });
+
+      // Cerrar modal al hacer clic fuera
+      window.addEventListener('click', (e) => {
+        if (e.target === confirmacionEntregaModal) {
+          confirmacionEntregaModal.style.display = 'none';
+        }
+      });
+    }
+
+    // Virtualización de lista para el historial
+    function setupVirtualList() {
+      const container = document.querySelector('.virtual-list-container');
+      const list = document.getElementById('historial-list');
+      
+      function renderVisibleItems() {
+        scrollTop = container.scrollTop;
+        const startIndex = Math.floor(scrollTop / ITEM_HEIGHT);
+        const endIndex = Math.min(startIndex + Math.ceil(container.clientHeight / ITEM_HEIGHT) + 2, historial.length);
+        
+        // Calcular posición y altura del contenedor virtual
+        list.style.height = `${historial.length * ITEM_HEIGHT}px`;
+        
+        // Eliminar elementos no visibles
+        const currentItems = Array.from(list.children);
+        currentItems.forEach(item => {
+          const index = parseInt(item.dataset.index);
+          if (index < startIndex || index >= endIndex) {
+            item.remove();
+          }
+        });
+        
+        // Agregar elementos visibles
+        for (let i = startIndex; i < endIndex; i++) {
+          if (!document.querySelector(`.virtual-list-item[data-index="${i}"]`)) {
+            const pedido = historial[i];
+            const item = document.createElement('div');
+            item.className = 'virtual-list-item pedido-card';
+            item.dataset.index = i;
+            item.style.top = `${i * ITEM_HEIGHT}px`;
+            item.style.height = `${ITEM_HEIGHT}px`;
+            item.innerHTML = `
+              <h3>${pedido.cliente}</h3>
+              <p><small>Archivado el: ${formatearFecha(pedido.fechaArchivado)}</small></p>
+              <p>${pedido.direccion}</p>
+              <p>Productos: ${pedido.productos}</p>
+              <p>Tel: +503${pedido.telefono}</p>
+              <p>Vendedor: ${pedido.vendedor} (Tel: +503${pedido.telefonoVendedor})</p>
+              <p><small>Creado: ${formatearFecha(pedido.fechaCreacion)}</small></p>
+            `;
+            list.appendChild(item);
+          }
+        }
+      }
+      
+      container.addEventListener('scroll', () => {
+        requestAnimationFrame(renderVisibleItems);
+      });
+      
+      // Renderizar inicialmente
+      renderVisibleItems();
+    }
+
+    // Renderizar historial con virtualización
+    function renderizarHistorial(lista = historial) {
+      loadingSpinner.style.display = 'block';
+      historialList.innerHTML = '';
+      
+      setTimeout(() => {
+        if (lista.length === 0) {
+          historialList.innerHTML = '<p>No hay pedidos archivados aún.</p>';
+          loadingSpinner.style.display = 'none';
+          return;
+        }
+        
+        historial = lista;
+        setupVirtualList();
+        loadingSpinner.style.display = 'none';
+      }, 300);
     }
 
     // Filtrar historial por fecha
@@ -769,6 +1193,9 @@
         pedido.estado = estado;
         if (estado === 'entregado') {
           const mensaje = `✅ Pedido entregado 🙂¡Hazlo fácil con Vidri!`;
+          enviarWhatsApp(pedido.telefonoVendedor, mensaje);
+        } else if (estado === 'no_entregado') {
+          const mensaje = `❌ Pedido NO entregado\n\nCliente: ${pedido.cliente}\nDirección: ${pedido.direccion}\nProductos: ${pedido.productos}\n\nPor favor contactar al cliente: +503${pedido.telefono}`;
           enviarWhatsApp(pedido.telefonoVendedor, mensaje);
         }
         renderizarPedidos();
@@ -823,8 +1250,8 @@
 
     // Configurar gestión de vendedores
     function setupVendedores() {
-      const vendedorNombreInput = document.getElementById('vendedor-nombre');
-      const vendedorTelefonoInput = document.getElementById('vendedor-telefono');
+      const vendedorNombreInputSidebar = document.getElementById('vendedor-nombre-input');
+      const vendedorTelefonoInputSidebar = document.getElementById('vendedor-telefono-input');
       const addVendedorBtn = document.getElementById('add-vendedor-btn');
       const vendedoresList = document.getElementById('vendedores-list');
       
@@ -845,13 +1272,13 @@
       
       // Agregar nuevo vendedor
       addVendedorBtn.addEventListener('click', () => {
-        const nombre = vendedorNombreInput.value.trim();
-        const telefono = vendedorTelefonoInput.value.trim();
+        const nombre = vendedorNombreInputSidebar.value.trim();
+        const telefono = vendedorTelefonoInputSidebar.value.trim();
         
         if (nombre && telefono && telefono.length === 8) {
           vendedores.push({ nombre, telefono });
-          vendedorNombreInput.value = '';
-          vendedorTelefonoInput.value = '';
+          vendedorNombreInputSidebar.value = '';
+          vendedorTelefonoInputSidebar.value = '';
           renderVendedores();
         } else {
           alert('Por favor ingrese un nombre y teléfono válido (8 dígitos)');
@@ -867,19 +1294,20 @@
       if (!datalist) return;
       
       datalist.innerHTML = vendedores.map(v => 
-        `<option value="${v.nombre} (${v.telefono})">${v.nombre} - ${v.telefono}</option>`
+        `<option value="${v.nombre}" data-telefono="${v.telefono}">${v.nombre} - ${v.telefono}</option>`
       ).join('');
       
       // Actualizar ambos campos cuando seleccionan vendedor
       const vendedorInput = document.querySelector('input[list="vendedores-data"]');
       if (vendedorInput) {
-        vendedorInput.addEventListener('change', (e) => {
-          const match = e.target.value.match(/(.+)\s\((\d{8})\)/);
-          if (match) {
-            const nombre = match[1];
-            const telefono = match[2];
-            vendedorInput.value = nombre;
-            const telefonoInput = document.querySelector('#pedido-form input[placeholder="Teléfono del Vendedor (8 dígitos)"]');
+        vendedorInput.addEventListener('input', (e) => {
+          const selectedOption = Array.from(datalist.options).find(opt => 
+            opt.value === e.target.value
+          );
+          
+          if (selectedOption) {
+            const telefono = selectedOption.dataset.telefono;
+            const telefonoInput = document.getElementById('vendedor-telefono');
             if (telefonoInput) {
               telefonoInput.value = telefono;
             }
@@ -909,17 +1337,20 @@
       }
     };
 
-    // Configurar búsqueda
+    // Configurar búsqueda con debounce
     function setupSearch() {
       searchInput.addEventListener('input', (e) => {
-        const term = e.target.value.toLowerCase();
-        const filtered = pedidos.filter(p => 
-          p.cliente.toLowerCase().includes(term) || 
-          p.direccion.toLowerCase().includes(term) ||
-          p.productos.toLowerCase().includes(term) ||
-          p.vendedor.toLowerCase().includes(term)
-        );
-        renderizarPedidos(filtered);
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+          const term = e.target.value.toLowerCase();
+          const filtered = pedidos.filter(p => 
+            p.cliente.toLowerCase().includes(term) || 
+            p.direccion.toLowerCase().includes(term) ||
+            p.productos.toLowerCase().includes(term) ||
+            p.vendedor.toLowerCase().includes(term)
+          );
+          renderizarPedidos(filtered);
+        }, 300);
       });
     }
 
@@ -989,58 +1420,83 @@
       });
     }
 
-    // Guardar nuevo pedido
+    // Configurar validación de teléfonos - FUNCIÓN CORREGIDA
+    function setupPhoneValidation() {
+      document.querySelectorAll('input[type="tel"]').forEach(input => {
+        input.addEventListener('input', (e) => {
+          // Limpiar el valor manteniendo solo dígitos
+          let cleanedValue = e.target.value.replace(/\D/g, '');
+          
+          // Limitar a 8 dígitos
+          cleanedValue = cleanedValue.slice(0, 8);
+          
+          // Actualizar el valor del campo
+          e.target.value = cleanedValue;
+          
+          // Si es el campo de teléfono del cliente, buscar cliente frecuente
+          if (e.target.id === 'cliente-telefono' && cleanedValue.length === 8) {
+            buscarClienteFrecuente(cleanedValue);
+          }
+        });
+      });
+    }
+
+    // Guardar nuevo pedido - FUNCIÓN CORREGIDA
     function setupFormSubmit() {
       pedidoForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const inputs = e.target.elements;
+        
+        // Obtener valores limpios de los teléfonos
+        const telefonoCliente = clienteTelefonoInput.value.replace(/\D/g, '');
+        const telefonoVendedor = document.getElementById('vendedor-telefono').value.replace(/\D/g, '');
         
         // Validar teléfonos
-        const telefonoCliente = inputs[2].value.replace(/\D/g, '');
-        const telefonoVendedor = inputs[5].value.replace(/\D/g, '');
-        
         if (telefonoCliente.length !== 8 || telefonoVendedor.length !== 8) {
-          alert('Los números de teléfono deben tener 8 dígitos');
+          alert('Por favor ingrese números de teléfono válidos (8 dígitos)');
           return;
         }
         
         // Extraer solo el nombre del vendedor si viene con teléfono
-        let nombreVendedor = inputs[4].value;
-        const match = nombreVendedor.match(/(.+)\s\(\d{8}\)/);
-        if (match) {
-          nombreVendedor = match[1].trim();
-        }
+        let nombreVendedor = document.getElementById('vendedor-nombre').value;
         
+        // Crear nuevo pedido
         const nuevoPedido = {
           id: Date.now(),
-          cliente: inputs[0].value.trim(),
-          direccion: inputs[1].value.trim(),
+          cliente: clienteNombreInput.value.trim(),
+          direccion: clienteDireccionInput.value.trim(),
           telefono: telefonoCliente,
-          productos: inputs[3].value.trim(),
+          productos: clienteProductosInput.value.trim(),
           vendedor: nombreVendedor,
           telefonoVendedor: telefonoVendedor,
           estado: 'pendiente',
           fechaCreacion: new Date()
         };
         
+        // Agregar el pedido y actualizar la vista
         pedidos.push(nuevoPedido);
         registroModal.style.display = 'none';
         pedidoForm.reset();
         renderizarPedidos();
+        guardarDatos();
         
         // Notificar al vendedor
-        const mensajeVendedor = `📦 Nuevo pedido registrado va en ruta\n\nCliente: ${nuevoPedido.cliente}\nDirección: ${nuevoPedido.direccion}\nProductos: ${nuevoPedido.productos}\n\nTeléfono del cliente: +503${nuevoPedido.telefono}`;
+        const mensajeVendedor = `📦 Nuevo pedido registrado va en ruta🚛\n\nCliente: ${nuevoPedido.cliente}\nDirección: ${nuevoPedido.direccion}\nProductos: ${nuevoPedido.productos}\n\nTeléfono del cliente: +503${nuevoPedido.telefono}`;
         enviarWhatsApp(nuevoPedido.telefonoVendedor, mensajeVendedor);
       });
     }
 
-    // Validar teléfonos
-    function setupPhoneValidation() {
-      document.querySelectorAll('input[type="tel"]').forEach(input => {
-        input.addEventListener('input', (e) => {
-          e.target.value = e.target.value.replace(/\D/g, '').slice(0, 8);
-        });
+    // Configurar detección de cliente frecuente
+    function setupClienteFrecuente() {
+      clienteTelefonoInput.addEventListener('input', (e) => {
+        const telefono = e.target.value.replace(/\D/g, '');
+        if (telefono.length === 8) {
+          buscarClienteFrecuente(telefono);
+        } else {
+          clienteFrecuenteDiv.style.display = 'none';
+        }
       });
+      
+      usarClienteBtn.addEventListener('click', usarInfoCliente);
     }
 
     // Inicialización
@@ -1050,6 +1506,9 @@
       setupFormSubmit();
       setupPhoneValidation();
       setupSearch();
+      setupClienteFrecuente();
+      setupBackground();
+      setupConfirmacionEntrega();
       renderizarPedidos();
     });
   </script>
