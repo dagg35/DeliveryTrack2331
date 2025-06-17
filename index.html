@@ -24,6 +24,7 @@
       background-position: center;
       background-attachment: fixed;
       background-repeat: no-repeat;
+      color: #333;
     }
 
     /* Contenedor principal */
@@ -34,47 +35,256 @@
       position: relative;
       overflow-x: hidden;
       background-color: rgba(255, 255, 255, 0.85);
+      transition: background-color 0.3s ease;
+    }
+
+    /* ========== TEMA CLARO (PREDETERMINADO) ========== */
+    body.light-theme {
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    body.light-theme .app-container {
+      background-color: rgba(255, 255, 255, 0.9);
+    }
+
+    body.light-theme .pedido-card {
+      background: linear-gradient(135deg, #F8EDEB 0%, #F9DCC4 100%);
+      color: #333;
+    }
+
+    body.light-theme .pedido-card:nth-child(even) {
+      background: linear-gradient(135deg, #E8F7EE 0%, #D4EDE1 100%);
+    }
+
+    body.light-theme .stats-bar,
+    body.light-theme .modal-content {
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body.light-theme input,
+    body.light-theme textarea,
+    body.light-theme select {
+      background-color: #fff;
+      color: #333;
+      border: 1px solid #ddd;
+    }
+
+    body.light-theme .sidebar {
+      background-color: #fff;
+      box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ========== TEMA OSCURO (PERFECCIONADO) ========== */
+    body.dark-theme {
+      background-color: #121212;
+      color: #e0e0e0;
     }
 
     body.dark-theme .app-container {
-      background-color: rgba(0, 0, 0, 0.85);
-    }
-
-    /* Estilos para temas */
-    body.dark-theme {
-      background-color: #222;
-      color: #eee;
+      background-color: rgba(30, 30, 30, 0.9);
     }
 
     body.dark-theme .pedido-card {
-      background: #333;
-      color: #eee;
+      background: linear-gradient(135deg, #2a2a2a 0%, #1e1e1e 100%);
+      color: #e0e0e0;
+      border-left: 4px solid #444;
+    }
+
+    body.dark-theme .pedido-card:nth-child(even) {
+      background: linear-gradient(135deg, #252525 0%, #1a1a1a 100%);
     }
 
     body.dark-theme .stats-bar,
     body.dark-theme .modal-content {
-      background: #444;
-      color: #eee;
+      background: rgba(40, 40, 40, 0.95);
+      color: #e0e0e0;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
     }
 
     body.dark-theme input,
     body.dark-theme textarea,
     body.dark-theme select {
-      background-color: #555;
-      color: #eee;
-      border-color: #666;
+      background-color: #333;
+      color: #e0e0e0;
+      border: 1px solid #444;
     }
 
+    body.dark-theme .sidebar {
+      background-color: #2a2a2a;
+      box-shadow: 2px 0 15px rgba(0, 0, 0, 0.3);
+    }
+
+    body.dark-theme .sidebar h3, 
+    body.dark-theme .sidebar h4 {
+      color: #e0e0e0;
+    }
+
+    body.dark-theme .search-input {
+      background-color: rgba(40, 40, 40, 0.9);
+      color: #e0e0e0;
+      border-color: #444;
+    }
+
+    /* ========== TEMA NARANJA (PROFESIONAL) ========== */
     body.orange-theme {
-      background-color: #fff8f0;
+      background-color: #fff5e6;
+      color: #4a3a28;
+    }
+
+    body.orange-theme .app-container {
+      background-color: rgba(255, 245, 230, 0.9);
     }
 
     body.orange-theme .pedido-card {
-      background: linear-gradient(135deg, #ffe8d6 0%, #ffd1a4 100%);
+      background: linear-gradient(135deg, #fff0db 0%, #ffe0b8 100%);
+      color: #4a3a28;
+      border-left: 4px solid #ffb347;
     }
 
     body.orange-theme .pedido-card:nth-child(even) {
-      background: linear-gradient(135deg, #ffdfc4 0%, #ffb347 100%);
+      background: linear-gradient(135deg, #ffe8d6 0%, #ffd1a4 100%);
+    }
+
+    body.orange-theme .stats-bar,
+    body.orange-theme .modal-content {
+      background: rgba(255, 240, 220, 0.95);
+      color: #4a3a28;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body.orange-theme input,
+    body.orange-theme textarea,
+    body.orange-theme select {
+      background-color: #fff9f0;
+      color: #4a3a28;
+      border: 1px solid #ffd1a4;
+    }
+
+    body.orange-theme .sidebar {
+      background-color: #fff5e6;
+      box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body.orange-theme .search-input {
+      background-color: rgba(255, 245, 230, 0.9);
+      color: #4a3a28;
+      border-color: #ffb347;
+    }
+
+    /* ========== TEMA VERDE (SÓLIDO Y PASTEL) ========== */
+    body.green-theme {
+      background-color: #e8f5e9;
+      color: #2e4a3d;
+    }
+
+    body.green-theme .app-container {
+      background-color: rgba(232, 245, 233, 0.9);
+    }
+
+    body.green-theme .pedido-card {
+      background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+      color: #2e4a3d;
+      border-left: 4px solid #81c784;
+    }
+
+    body.green-theme .pedido-card:nth-child(even) {
+      background: linear-gradient(135deg, #dcedc8 0%, #c5e1a5 100%);
+    }
+
+    body.green-theme .stats-bar,
+    body.green-theme .modal-content {
+      background: rgba(220, 237, 200, 0.95);
+      color: #2e4a3d;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body.green-theme input,
+    body.green-theme textarea,
+    body.green-theme select {
+      background-color: #f1f8e9;
+      color: #2e4a3d;
+      border: 1px solid #a5d6a7;
+    }
+
+    body.green-theme .sidebar {
+      background-color: #e8f5e9;
+      box-shadow: 2px 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    body.green-theme .search-input {
+      background-color: rgba(232, 245, 233, 0.9);
+      color: #2e4a3d;
+      border-color: #81c784;
+    }
+
+    /* Estilos comunes para todos los temas */
+    .sidebar h3, .sidebar h4 {
+      color: #333;
+      margin-top: 20px;
+    }
+
+    body.dark-theme .sidebar h3, 
+    body.dark-theme .sidebar h4 {
+      color: #e0e0e0;
+    }
+
+    .sidebar button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin: 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .sidebar button:hover {
+      background-color: #3e8e41;
+    }
+
+    body.orange-theme .sidebar button {
+      background-color: #FF6B35;
+    }
+
+    body.orange-theme .sidebar button:hover {
+      background-color: #e05a2b;
+    }
+
+    .theme-selector select {
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      background-color: white;
+      color: #333;
+    }
+
+    body.dark-theme .theme-selector select {
+      background-color: #333;
+      color: #e0e0e0;
+      border-color: #444;
+    }
+
+    body.orange-theme .theme-selector select {
+      background-color: #fff9f0;
+      color: #4a3a28;
+      border-color: #ffd1a4;
+    }
+
+    body.green-theme .theme-selector select {
+      background-color: #f1f8e9;
+      color: #2e4a3d;
+      border-color: #a5d6a7;
     }
 
     /* Menú Hamburguesa */
@@ -99,8 +309,12 @@
     .hamburger-menu .bar {
       height: 3px;
       width: 100%;
-      background-color: #FF6B35;
+      background-color: #4CAF50;
       transition: all 0.3s ease;
+    }
+
+    body.orange-theme .hamburger-menu .bar {
+      background-color: #FF6B35;
     }
 
     .sidebar {
@@ -109,7 +323,6 @@
       left: -300px;
       width: 280px;
       height: 100vh;
-      background-color: white;
       box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
       padding: 20px;
       transition: all 0.3s ease;
@@ -121,45 +334,18 @@
       left: 0;
     }
 
-    .sidebar h3, .sidebar h4 {
-      color: #333;
-      margin-top: 20px;
-    }
-
-    .sidebar button {
-      background-color: #FF6B35;
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
-      width: 100%;
-      margin: 10px 0;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      justify-content: center;
-    }
-
-    .theme-selector select {
-      width: 100%;
-      padding: 8px;
-      margin: 10px 0;
-      border-radius: 5px;
-      border: 1px solid #ddd;
-    }
-
     /* Barra de estadísticas mejorada */
     .stats-bar {
       display: flex;
       justify-content: space-around;
       padding: 15px;
-      background: rgba(255, 255, 255, 0.9);
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
       position: sticky;
       top: 0;
       z-index: 10;
       backdrop-filter: blur(5px);
+      border-radius: 0 0 10px 10px;
+      margin-bottom: 10px;
     }
 
     .stat-card {
@@ -167,12 +353,21 @@
       padding: 10px;
       border-radius: 10px;
       min-width: 90px;
+      transition: transform 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-3px);
     }
 
     .stat-card i {
       font-size: 28px;
-      color: #FF6B35;
+      color: #4CAF50;
       margin-bottom: 5px;
+    }
+
+    body.orange-theme .stat-card i {
+      color: #FF6B35;
     }
 
     .stat-card span {
@@ -182,18 +377,18 @@
       color: #333;
     }
 
+    body.dark-theme .stat-card span {
+      color: #e0e0e0;
+    }
+
     .stat-card p {
       font-size: 14px;
       color: #666;
       margin-top: 5px;
     }
 
-    body.dark-theme .stat-card span {
-      color: #eee;
-    }
-
     body.dark-theme .stat-card p {
-      color: #ccc;
+      color: #aaa;
     }
 
     /* Lista de pedidos */
@@ -207,7 +402,6 @@
       padding: 15px;
       margin-bottom: 15px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      background: linear-gradient(135deg, #F8EDEB 0%, #F9DCC4 100%);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
@@ -216,23 +410,19 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
     }
 
-    /* Color alterno para tarjetas pares */
-    .pedido-card:nth-child(even) {
-      background: linear-gradient(135deg, #E8F7EE 0%, #D4EDE1 100%);
-    }
-
     .pedido-card h3 {
       margin: 0;
-      color: #333;
+      color: inherit;
     }
 
     .pedido-card p {
       margin: 5px 0;
-      color: #666;
+      color: inherit;
     }
 
     .pedido-card small {
-      color: #999;
+      color: inherit;
+      opacity: 0.8;
     }
 
     .botones-accion {
@@ -254,10 +444,16 @@
       justify-content: center;
       gap: 5px;
       min-width: 120px;
+      transition: all 0.3s ease;
+    }
+
+    .pedido-card button:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
     }
 
     .btn-en-camino {
-      background: #FFA500;
+      background: #2196F3;
       color: white;
     }
 
@@ -267,12 +463,12 @@
     }
 
     .btn-no-entregado {
-      background: #ff4444;
+      background: #f44336;
       color: white;
     }
 
     .btn-archivar {
-      background: #6c757d !important;
+      background: #607D8B !important;
       color: white !important;
     }
 
@@ -284,7 +480,7 @@
       width: 70px;
       height: 70px;
       border-radius: 50%;
-      background: #FF6B35;
+      background: #4CAF50;
       color: white;
       border: none;
       font-size: 30px;
@@ -295,6 +491,10 @@
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
+    }
+
+    body.orange-theme .floating-btn {
+      background: #FF6B35;
     }
 
     .floating-btn:hover {
@@ -317,7 +517,6 @@
     }
 
     .modal-content {
-      background: white;
       padding: 20px;
       border-radius: 10px;
       width: 90%;
@@ -339,13 +538,36 @@
       color: #777;
     }
 
+    body.dark-theme .close-btn {
+      color: #aaa;
+    }
+
     form input, form textarea, form select {
       width: 100%;
       padding: 10px;
       margin: 10px 0;
-      border: 1px solid #ddd;
       border-radius: 5px;
       font-family: inherit;
+      transition: border-color 0.3s ease;
+    }
+
+    form input:focus, 
+    form textarea:focus, 
+    form select:focus {
+      outline: none;
+      border-color: #4CAF50;
+    }
+
+    body.orange-theme form input:focus,
+    body.orange-theme form textarea:focus,
+    body.orange-theme form select:focus {
+      border-color: #FF6B35;
+    }
+
+    body.green-theme form input:focus,
+    body.green-theme form textarea:focus,
+    body.green-theme form select:focus {
+      border-color: #81c784;
     }
 
     form textarea {
@@ -367,6 +589,7 @@
       border-radius: 5px;
       cursor: pointer;
       font-weight: bold;
+      transition: all 0.3s ease;
     }
 
     .btn-cancelar {
@@ -374,14 +597,27 @@
       color: #333;
     }
 
+    body.dark-theme .btn-cancelar {
+      background: #444;
+      color: #e0e0e0;
+    }
+
     .modal-actions button[type="submit"] {
-      background: #FF6B35;
+      background: #4CAF50;
       color: white;
+    }
+
+    body.orange-theme .modal-actions button[type="submit"] {
+      background: #FF6B35;
+    }
+
+    .modal-actions button:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
     }
 
     /* Historial */
     #historial-list .pedido-card {
-      background: #f8f9fa;
       margin-bottom: 10px;
     }
 
@@ -393,6 +629,7 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       display: inline-block;
+      font-weight: bold;
     }
     
     .estado-pendiente {
@@ -419,6 +656,30 @@
       border-left: 4px solid #DC3545;
     }
 
+    body.dark-theme .estado-pendiente {
+      background-color: #332b00;
+      color: #ffd633;
+      border-left: 4px solid #ffd633;
+    }
+    
+    body.dark-theme .estado-en_camino {
+      background-color: #002752;
+      color: #4d9eff;
+      border-left: 4px solid #4d9eff;
+    }
+    
+    body.dark-theme .estado-entregado {
+      background-color: #0d291e;
+      color: #4caf7a;
+      border-left: 4px solid #4caf7a;
+    }
+
+    body.dark-theme .estado-no_entregado {
+      background-color: #3a0a0e;
+      color: #ff5e6d;
+      border-left: 4px solid #ff5e6d;
+    }
+
     /* Search input mejorado */
     .search-input {
       width: 90%;
@@ -436,7 +697,15 @@
     .search-input:focus {
       outline: none;
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      border-color: #4CAF50;
+    }
+
+    body.orange-theme .search-input:focus {
       border-color: #FF6B35;
+    }
+
+    body.green-theme .search-input:focus {
+      border-color: #81c784;
     }
 
     /* Configuración de fondo */
@@ -445,6 +714,18 @@
       padding: 15px;
       background-color: #f5f5f5;
       border-radius: 8px;
+    }
+
+    body.dark-theme .background-settings {
+      background-color: #333;
+    }
+
+    body.orange-theme .background-settings {
+      background-color: #ffe8d6;
+    }
+
+    body.green-theme .background-settings {
+      background-color: #dcedc8;
     }
 
     .background-settings h4 {
@@ -469,12 +750,21 @@
 
     .background-option label {
       padding: 8px 12px;
-      background-color: #FF6B35;
+      background-color: #4CAF50;
       color: white;
       border-radius: 5px;
       cursor: pointer;
       font-size: 14px;
       display: inline-block;
+      transition: all 0.3s ease;
+    }
+
+    body.orange-theme .background-option label {
+      background-color: #FF6B35;
+    }
+
+    .background-option label:hover {
+      filter: brightness(1.1);
     }
 
     .background-option button {
@@ -485,6 +775,11 @@
       border-radius: 5px;
       cursor: pointer;
       font-size: 14px;
+      transition: all 0.3s ease;
+    }
+
+    .background-option button:hover {
+      background-color: #5a6268;
     }
 
     /* Cliente frecuente */
@@ -494,6 +789,21 @@
       border-radius: 5px;
       margin: 10px 0;
       display: none;
+    }
+
+    body.dark-theme .cliente-frecuente {
+      background-color: #1e3b2a;
+      color: #e0e0e0;
+    }
+
+    body.orange-theme .cliente-frecuente {
+      background-color: #ffe0b2;
+      color: #4a3a28;
+    }
+
+    body.green-theme .cliente-frecuente {
+      background-color: #c8e6c9;
+      color: #2e4a3d;
     }
 
     .cliente-frecuente p {
@@ -508,6 +818,11 @@
       border-radius: 3px;
       cursor: pointer;
       margin-top: 5px;
+      transition: all 0.3s ease;
+    }
+
+    .cliente-frecuente button:hover {
+      background-color: #218838;
     }
 
     /* Virtualización de listas */
@@ -538,11 +853,15 @@
     .spinner {
       border: 4px solid rgba(0, 0, 0, 0.1);
       border-radius: 50%;
-      border-top: 4px solid #FF6B35;
+      border-top: 4px solid #4CAF50;
       width: 30px;
       height: 30px;
       animation: spin 1s linear infinite;
       margin: 0 auto;
+    }
+
+    body.orange-theme .spinner {
+      border-top-color: #FF6B35;
     }
 
     @keyframes spin {
@@ -569,12 +888,21 @@
     }
 
     #add-vendedor-btn {
-      background-color: #FF6B35;
+      background-color: #4CAF50;
       color: white;
       border: none;
       padding: 8px;
       border-radius: 5px;
       cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    body.orange-theme #add-vendedor-btn {
+      background-color: #FF6B35;
+    }
+
+    #add-vendedor-btn:hover {
+      filter: brightness(1.1);
     }
 
     #vendedores-list {
@@ -593,6 +921,21 @@
       align-items: center;
     }
 
+    body.dark-theme #vendedores-list li {
+      background-color: #333;
+      color: #e0e0e0;
+    }
+
+    body.orange-theme #vendedores-list li {
+      background-color: #ffe8d6;
+      color: #4a3a28;
+    }
+
+    body.green-theme #vendedores-list li {
+      background-color: #e8f5e9;
+      color: #2e4a3d;
+    }
+
     #vendedores-list li button {
       background-color: #ff4444;
       color: white;
@@ -606,6 +949,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    #vendedores-list li button:hover {
+      background-color: #cc0000;
     }
 
     /* Submenu de historial */
@@ -622,6 +970,10 @@
     .historial-submenu button {
       background-color: #e67e22;
       margin: 5px 0;
+    }
+
+    .historial-submenu button:hover {
+      background-color: #d35400;
     }
 
     /* Calendario en historial */
@@ -671,6 +1023,12 @@
       cursor: pointer;
       font-weight: bold;
       min-width: 120px;
+      transition: all 0.3s ease;
+    }
+
+    .confirmacion-botones button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     }
 
     .btn-confirmar-entrega {
@@ -678,13 +1036,21 @@
       color: white;
     }
 
+    .btn-confirmar-entrega:hover {
+      background-color: #3e8e41;
+    }
+
     .btn-negar-entrega {
       background-color: #f44336;
       color: white;
     }
+
+    .btn-negar-entrega:hover {
+      background-color: #d32f2f;
+    }
   </style>
 </head>
-<body>
+<body class="light-theme">
   <div class="app-container">
     <!-- Menú Hamburguesa -->
     <div class="menu-container">
@@ -716,6 +1082,7 @@
             <option value="light">Claro</option>
             <option value="dark">Oscuro</option>
             <option value="orange">Naranja</option>
+            <option value="green">Verde</option>
           </select>
         </div>
         
@@ -1480,7 +1847,7 @@
         guardarDatos();
         
         // Notificar al vendedor
-        const mensajeVendedor = `📦 Nuevo pedido registrado va en ruta🚛\n\nCliente: ${nuevoPedido.cliente}\nDirección: ${nuevoPedido.direccion}\nProductos: ${nuevoPedido.productos}\n\nTeléfono del cliente: +503${nuevoPedido.telefono}`;
+        const mensajeVendedor = `📦 Nuevo pedido registrado ya va en ruta!🚚\n\nCliente: ${nuevoPedido.cliente}\nDirección: ${nuevoPedido.direccion}\nProductos: ${nuevoPedido.productos}\n\nTeléfono del cliente: +503${nuevoPedido.telefono}`;
         enviarWhatsApp(nuevoPedido.telefonoVendedor, mensajeVendedor);
       });
     }
