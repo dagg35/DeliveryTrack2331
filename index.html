@@ -1048,6 +1048,106 @@
     .btn-negar-entrega:hover {
       background-color: #d32f2f;
     }
+
+    /* Estilos para el módulo OCR */
+    .ocr-container {
+      display: none;
+      padding: 15px;
+      background-color: #f5f5f5;
+      border-radius: 8px;
+      margin: 15px auto;
+      max-width: 500px;
+    }
+
+    body.dark-theme .ocr-container {
+      background-color: #333;
+    }
+
+    body.orange-theme .ocr-container {
+      background-color: #ffe8d6;
+    }
+
+    body.green-theme .ocr-container {
+      background-color: #e8f5e9;
+    }
+
+    .ocr-container h3 {
+      margin-top: 0;
+      color: inherit;
+    }
+
+    .ocr-container input[type="file"] {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .ocr-container button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    body.orange-theme .ocr-container button {
+      background-color: #FF6B35;
+    }
+
+    .ocr-container #ocr-output {
+      background-color: white;
+      padding: 10px;
+      border-radius: 5px;
+      max-width: 100%;
+      overflow-x: auto;
+      white-space: pre-wrap;
+    }
+
+    body.dark-theme .ocr-container #ocr-output {
+      background-color: #444;
+      color: #e0e0e0;
+    }
+
+    body.orange-theme .ocr-container #ocr-output {
+      background-color: #fff9f0;
+      color: #4a3a28;
+    }
+
+    body.green-theme .ocr-container #ocr-output {
+      background-color: #f1f8e9;
+      color: #2e4a3d;
+    }
+
+    .ocr-container #ocr-copy-btn {
+      background-color: #2196F3;
+    }
+
+    .ocr-toggle {
+      position: fixed;
+      bottom: 110px;
+      right: 30px;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: #2196F3;
+      color: white;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .ocr-toggle:hover {
+      transform: scale(1.1);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    }
   </style>
 </head>
 <body class="light-theme">
@@ -1137,6 +1237,18 @@
     <!-- Search input mejorado -->
     <input type="text" id="buscar-pedido" placeholder="Buscar pedidos..." class="search-input">
 
+    <!-- Módulo OCR -->
+    <div class="ocr-container" id="ocr-container">
+      <h3>Extraer Productos desde Imagen</h3>
+      <input type="file" id="imageInput" accept="image/*">
+      <canvas id="preview" style="display:none;"></canvas>
+      <button id="extractBtn">Extraer texto</button>
+      <div id="outputContainer">
+        <button id="copyBtn">Copiar texto</button>
+        <pre id="output"></pre>
+      </div>
+    </div>
+
     <!-- Lista de Pedidos -->
     <div class="pedidos-container" id="pedidos-list">
       <!-- Tarjetas generadas dinámicamente -->
@@ -1151,6 +1263,11 @@
     <!-- Botón Flotante Mejorado -->
     <button class="floating-btn" id="add-pedido-btn">
       <i class="fas fa-plus"></i>
+    </button>
+
+    <!-- Botón para mostrar/ocultar OCR -->
+    <button class="ocr-toggle" id="ocr-toggle-btn">
+      <i class="fas fa-camera"></i>
     </button>
 
     <!-- Modal de Registro con detección de cliente frecuente - FORMULARIO CORREGIDO -->
@@ -1219,6 +1336,7 @@
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.1.1/dist/tesseract.min.js"></script>
   <script>
     // Datos
     let pedidos = JSON.parse(localStorage.getItem('pedidos')) || [];
@@ -1262,11 +1380,92 @@
     const confirmacionEntregaModal = document.getElementById('confirmacion-entrega-modal');
     const confirmarEntregaBtn = document.getElementById('confirmar-entrega-btn');
     const negarEntregaBtn = document.getElementById('negar-entrega-btn');
+    const ocrContainer = document.getElementById('ocr-container');
+    const ocrToggleBtn = document.getElementById('ocr-toggle-btn');
 
     // Variables para virtualización
     const ITEM_HEIGHT = 180; // Altura estimada de cada elemento del historial
     let visibleItems = [];
     let scrollTop = 0;
+
+    // Configurar módulo OCR
+    function setupOCR() {
+      const imageInput = document.getElementById('imageInput');
+      const extractBtn = document.getElementById('extractBtn');
+      const output = document.getElementById('output');
+      const copyBtn = document.getElementById('copyBtn');
+
+      extractBtn.addEventListener('click', async () => {
+        const file = imageInput.files[0];
+        if (!file) {
+          alert('Selecciona una imagen primero');
+          return;
+        }
+
+        const image = await loadImage(file);
+        const canvas = document.getElementById('preview');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = image.width;
+        canvas.height = image.height;
+        ctx.drawImage(image, 0, 0);
+
+        output.textContent = 'Procesando OCR...';
+
+        const result = await Tesseract.recognize(canvas, 'eng');
+
+        const rawText = result.data.text;
+        output.textContent = formatText(rawText);
+      });
+
+      function loadImage(file) {
+        return new Promise((resolve) => {
+          const img = new Image();
+          img.onload = () => resolve(img);
+          img.src = URL.createObjectURL(file);
+        });
+      }
+
+      function formatText(text) {
+        const lines = text.trim().split('\n').filter(line => line.trim().length > 0);
+        const formatted = [];
+
+        for (let i = 0; i < lines.length; i++) {
+          const line = lines[i];
+
+          const match = line.match(/^(\d{4,6})\s+(.*)\s+([A-Z]{2,3})\s+([\d.,]+)/i);
+          if (match) {
+            const sku = match[1];
+            const desc = match[2];
+            const um = match[3];
+            const qty = match[4];
+            const nextLine = lines[i + 1] || '';
+
+            formatted.push(`SKU ${sku} / ${qty} ${um}\n${desc}`);
+          } else if (/^\d{4,6}/.test(line)) {
+            // Manejo más simple si solo viene SKU + descripción
+            const parts = line.split(/\s+/);
+            const sku = parts.shift();
+            const rest = parts.join(' ');
+            formatted.push(`SKU ${sku} / ? ?\n${rest}`);
+          }
+        }
+
+        return formatted.join('\n\n');
+      }
+
+      copyBtn.addEventListener('click', () => {
+        const text = document.getElementById('output').innerText;
+        navigator.clipboard.writeText(text)
+          .then(() => alert('Texto copiado'))
+          .catch(err => alert('Error al copiar'));
+      });
+
+      // Toggle para mostrar/ocultar OCR
+      ocrToggleBtn.addEventListener('click', () => {
+        ocrContainer.style.display = ocrContainer.style.display === 'block' ? 'none' : 'block';
+      });
+    }
 
     // Configurar fondo de pantalla
     function setupBackground() {
@@ -1876,6 +2075,7 @@
       setupClienteFrecuente();
       setupBackground();
       setupConfirmacionEntrega();
+      setupOCR();
       renderizarPedidos();
     });
   </script>
